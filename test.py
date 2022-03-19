@@ -1,25 +1,14 @@
-from typing import List
 
+dic = {'a':['b','c','d']}
+path = ['a']
 
-class Solution:
-    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        dic = [set() for _ in range(n)]
+a = dic['a']
+a.remove('b')
 
-        for edge in edges:
-            dic[edge[0]].add(edge[1])
-            dic[edge[1]].add(edge[0])
+print(dic)
+# for index, forward in enumerate(dic.get(path[-1])):
+#     copyDic = dic.copy()
+#     copyDic[path[-1]] = copyDic[path[-1]][:index] + copyDic[path[-1]][index+1:]
+#     print(copyDic[path[-1]])
+    # print(copyDic[path[-1]][index+1:])
 
-        visit = [0] * n
-        visit[source] = 1
-        path = set(source)
-        while path:
-            popElement = path.pop()
-            if popElement == destination:
-                return True
-
-            for element in dic[popElement]:
-                if visit[element] == 0:
-                    visit[element] = 1
-                    path.add(element)
-
-        return False
